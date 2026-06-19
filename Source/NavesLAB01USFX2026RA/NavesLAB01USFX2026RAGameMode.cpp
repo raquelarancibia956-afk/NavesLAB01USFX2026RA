@@ -8,6 +8,7 @@
 #include "FabricaMPlataforma.h"
 #include "FabricaMMuro.h"
 #include "Aplastador.h"
+#include "Facade.h"
 #include "NavesLAB01USFX2026RAPawn.h"
 
 ANavesLAB01USFX2026RAGameMode::ANavesLAB01USFX2026RAGameMode()
@@ -18,11 +19,11 @@ ANavesLAB01USFX2026RAGameMode::ANavesLAB01USFX2026RAGameMode()
 
 void ANavesLAB01USFX2026RAGameMode::BeginPlay()
 {
-	AFabricaMEnemigo* fabrica = GetWorld()->SpawnActor<AFabricaMTerrestre>(AFabricaMTerrestre::StaticClass());
-	Enemigo1 = fabrica->FabricarEnemigo(FVector(0, 0, 214.f));
+	Facade = GetWorld()->SpawnActor<AFacade>(AFacade::StaticClass());
 
-	fabrica = GetWorld()->SpawnActor<AFabricaMAcuatico>(AFabricaMAcuatico::StaticClass());
-	Enemigo2 = fabrica->FabricarEnemigo(FVector(-500, 0, 214.f));
+	Facade->CrearEnemigosAcuatico(4);
+	Facade->CrearEnemigosTerrestre(5);
+
 
 	Aplastador1 = GetWorld()->SpawnActor<AAplastador>(FVector::ZeroVector, FRotator::ZeroRotator);
 

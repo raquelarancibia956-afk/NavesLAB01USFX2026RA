@@ -11,16 +11,18 @@ class NAVESLAB01USFX2026RA_API AFacade : public AActor
 {
 	GENERATED_BODY()
 	
-public:	
-	// Sets default values for this actor's properties
-	AFacade();
+public:
+	TArray<AActor*> Objetos;
+
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+public:
+	AFacade();
+	virtual void CrearEnemigosAcuatico(int cantidad);
+	virtual void CrearEnemigosTerrestre(int cantidad);
+
 
 };
