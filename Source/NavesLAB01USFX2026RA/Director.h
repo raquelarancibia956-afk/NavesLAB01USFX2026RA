@@ -7,6 +7,7 @@
 #include "Director.generated.h"
 
 class AFabricaMEstructura;
+class AAplastador;
 
 UCLASS()
 class NAVESLAB01USFX2026RA_API ADirector : public AActor
@@ -18,9 +19,11 @@ public:
 	ADirector();
 
 	AFabricaMEstructura* Builder;
+	AAplastador* Aplastador;
 
 	virtual void SetBuilder(AFabricaMEstructura* builder);
-	virtual void AplastadorSimple();
+	virtual void SetObjeto(AAplastador* objeto);
+	virtual AAplastador* AplastadorSimple(FVector posicion);
 
 
 

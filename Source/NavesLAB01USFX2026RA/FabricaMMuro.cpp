@@ -14,10 +14,9 @@ void AFabricaMMuro::SetPosicion(FVector posicion)
 	Muro->SetActorLocation(posicion);
 }
 
-void AFabricaMMuro::SetAlto(float alto)
+void AFabricaMMuro::SetTamanio(FVector tamanio)
 {
-	FVector tamanioOriginal = Muro->GetActorScale3D();
-	Muro->SetActorScale3D(FVector(tamanioOriginal.X, tamanioOriginal.Y, alto));
+	Muro->SetActorScale3D(tamanio);
 }
 
 AEstructura* AFabricaMMuro::Fabricar()

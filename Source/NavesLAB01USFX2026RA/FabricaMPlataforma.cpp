@@ -6,5 +6,21 @@
 
 AEstructura* AFabricaMPlataforma::Fabricar()
 {
-	return GetWorld()->SpawnActor<APlataforma>(FVector(0, 0, 0), FRotator::ZeroRotator);
+	return Plataforma;
 }
+
+void AFabricaMPlataforma::InicializarEstructura()
+{
+	Plataforma = GetWorld()->SpawnActor<APlataforma>(FVector::ZeroVector, FRotator::ZeroRotator);
+}
+
+void AFabricaMPlataforma::SetPosicion(FVector posicion)
+{
+	Plataforma->SetActorLocation(posicion);
+}
+
+void AFabricaMPlataforma::SetTamanio(FVector tamanio)
+{
+	Plataforma->SetActorScale3D(tamanio);
+}
+

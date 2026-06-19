@@ -2,6 +2,7 @@
 
 
 #include "FabricaMEstructura.h"
+#include "Estructura.h"
 
 // Sets default values
 AFabricaMEstructura::AFabricaMEstructura()
@@ -11,12 +12,15 @@ AFabricaMEstructura::AFabricaMEstructura()
 
 }
 
-AEstructura* AFabricaMEstructura::Fabricar()
-{
-	return nullptr;
-}
-
 void AFabricaMEstructura::InicializarEstructura()
 {
+	//
+}
 
+void AFabricaMEstructura::SetPosicion(FVector posicion)
+{
+}
+
+void AFabricaMEstructura::SetTamanio(FVector tamanio)
+{
 }

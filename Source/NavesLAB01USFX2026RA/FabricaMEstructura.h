@@ -16,7 +16,11 @@ class NAVESLAB01USFX2026RA_API AFabricaMEstructura : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AFabricaMEstructura();
-	virtual void InicializarEstructura();
-	virtual AEstructura* Fabricar();
+	virtual AEstructura* Fabricar()	PURE_VIRTUAL(&AFabricaMEstructura::Fabricar, return nullptr; );
 
+	virtual void InicializarEstructura();
+
+	virtual void SetPosicion(FVector posicion);
+	virtual void SetTamanio(FVector tamanio);
+	//virtual void SetCantidad(int cantidad);
 };

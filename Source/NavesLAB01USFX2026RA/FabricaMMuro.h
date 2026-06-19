@@ -16,8 +16,9 @@ public:
 	AEstructura* Muro;
 
 	virtual void InicializarEstructura() override;
-	virtual void SetPosicion(FVector posicion);
-	virtual void SetAlto(float alto);
+	virtual void SetPosicion(FVector posicion) override;
+	virtual void SetTamanio(FVector tamanio) override;
+	//virtual void SetCantidad(int cantidad) override;
 
 
 	virtual AEstructura* Fabricar() override;

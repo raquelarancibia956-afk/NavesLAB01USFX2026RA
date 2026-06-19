@@ -2,6 +2,8 @@
 
 
 #include "Director.h"
+#include "Aplastador.h"
+#include "Muro.h"
 #include "FabricaMEstructura.h"
 
 // Sets default values
@@ -17,10 +19,18 @@ void ADirector::SetBuilder(AFabricaMEstructura* builder)
 	Builder = builder;
 }
 
-void ADirector::AplastadorSimple()
+void ADirector::SetObjeto(AAplastador* objeto)
 {
+	Aplastador = objeto;
+}
+
+AAplastador* ADirector::AplastadorSimple(FVector posicion)
+{
+	//Aplastador = GetWorld()->SpawnActor<AAplastador>(posicion, FRotator::ZeroRotator);
 	Builder->InicializarEstructura();
-	//Builder->SetAlt
+	Builder->SetPosicion(posicion);
+	Aplastador->Muros.Add(Builder->Fabricar());
+	return Aplastador;
 }
 
 
