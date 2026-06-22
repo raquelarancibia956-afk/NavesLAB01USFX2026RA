@@ -16,6 +16,7 @@ AEnemigo::AEnemigo()
 	Vida = 100;	
 	Velocidad = 100.0f;
 	PuedeDisparar = true;
+	DanioDisparo = 10;
 
 
 }
@@ -55,7 +56,8 @@ void AEnemigo::Disparar()
 		UWorld* Mundo = GetWorld();
 		if (Mundo != nullptr)
 		{
-			Mundo->SpawnActor<ANavesLAB01USFX2026RAProjectile>(PosicionDisparo, RotacionDisparo);
+			ANavesLAB01USFX2026RAProjectile* bala = Mundo->SpawnActor<ANavesLAB01USFX2026RAProjectile>(PosicionDisparo, RotacionDisparo);
+			bala->SetDanio(DanioDisparo);
 			PuedeDisparar = false;
 			GetWorldTimerManager().SetTimer(TimerHandle_Disparo, this, &AEnemigo::CambiarPuedeDisparar, TiempoEntreDisparos, true);
 		}

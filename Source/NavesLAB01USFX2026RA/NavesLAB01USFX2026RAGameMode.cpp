@@ -8,6 +8,7 @@
 #include "FabricaMPlataforma.h"
 #include "FabricaMMuro.h"
 #include "Aplastador.h"
+#include "Facade.h"
 #include "NavesLAB01USFX2026RAPawn.h"
 
 ANavesLAB01USFX2026RAGameMode::ANavesLAB01USFX2026RAGameMode()
@@ -18,18 +19,20 @@ ANavesLAB01USFX2026RAGameMode::ANavesLAB01USFX2026RAGameMode()
 
 void ANavesLAB01USFX2026RAGameMode::BeginPlay()
 {
-	AFabricaMEnemigo* fabrica = GetWorld()->SpawnActor<AFabricaMTerrestre>(AFabricaMTerrestre::StaticClass());
-	Enemigo1 = fabrica->FabricarEnemigo(FVector(0, 0, 214.f));
+	UWorld* World = GetWorld();
+	if (!World) return;
 
-	fabrica = GetWorld()->SpawnActor<AFabricaMAcuatico>(AFabricaMAcuatico::StaticClass());
-	Enemigo2 = fabrica->FabricarEnemigo(FVector(-500, 0, 214.f));
+	Facade = World->SpawnActor<AFacade>(AFacade::StaticClass());
+	Facade->CrearEnemigoAcuatico(5);
+	Facade->CrearEnemigoTerrestre(4, FVector(-200, 600, 0));
 
-	Aplastador1 = GetWorld()->SpawnActor<AAplastador>(FVector::ZeroVector, FRotator::ZeroRotator);
+
+	Aplastador1 = World->SpawnActor<AAplastador>(FVector::ZeroVector, FRotator::ZeroRotator);
 
 
-	ADirector* director = GetWorld()->SpawnActor<ADirector>(ADirector::StaticClass());
-	AFabricaMPlataforma* builderPlataforma = GetWorld()->SpawnActor<AFabricaMPlataforma>(AFabricaMPlataforma::StaticClass());
-	AFabricaMMuro* builderMuro = GetWorld()->SpawnActor<AFabricaMMuro>(AFabricaMMuro::StaticClass());
+	ADirector* director = World->SpawnActor<ADirector>(ADirector::StaticClass());
+	AFabricaMPlataforma* builderPlataforma = World->SpawnActor<AFabricaMPlataforma>(AFabricaMPlataforma::StaticClass());
+	AFabricaMMuro* builderMuro = World->SpawnActor<AFabricaMMuro>(AFabricaMMuro::StaticClass());
 
 	director->SetBuilder(builderPlataforma);
 	director->SetObjeto(Aplastador1);

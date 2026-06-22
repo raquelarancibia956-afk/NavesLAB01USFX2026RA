@@ -5,6 +5,7 @@
 #include "UObject/ConstructorHelpers.h"
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "NavesLAB01USFX2026RAPawn.h"
 #include "Enemigo.h"
 #include "Engine/StaticMesh.h"
 
@@ -51,6 +52,12 @@ void ANavesLAB01USFX2026RAProjectile::OnHit(UPrimitiveComponent* HitComp, AActor
 	if (enemigo != nullptr)
 	{
 		enemigo->RecibirDanio(Danio);
+	}
+
+	ANavesLAB01USFX2026RAPawn* jugador = Cast<ANavesLAB01USFX2026RAPawn>(OtherActor);
+	if (jugador != nullptr)
+	{
+		jugador->RecibirDanio(Danio);
 	}
 
 

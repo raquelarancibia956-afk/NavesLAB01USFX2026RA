@@ -8,6 +8,7 @@
 
 class AEnemigo;
 class AAplastador;
+class AFacade;
 
 UCLASS(MinimalAPI)
 class ANavesLAB01USFX2026RAGameMode : public AGameModeBase
@@ -21,6 +22,7 @@ public:
 	AEnemigo* Enemigo1;
 	AEnemigo* Enemigo2;
 	AAplastador* Aplastador1;
+	AFacade* Facade;
 	
 
 };

@@ -6,21 +6,24 @@
 #include "GameFramework/Actor.h"
 #include "Facade.generated.h"
 
+class AEnemigo;
+
 UCLASS()
 class NAVESLAB01USFX2026RA_API AFacade : public AActor
 {
 	GENERATED_BODY()
 	
-public:	
-	// Sets default values for this actor's properties
-	AFacade();
+public:
+	TArray<AEnemigo*> Enemigos;
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
+	AFacade();
 	virtual void Tick(float DeltaTime) override;
+	virtual void CrearEnemigoAcuatico(int cantidad, FVector posicion = FVector::ZeroVector);
+	virtual void CrearEnemigoTerrestre(int cantidad, FVector posicion = FVector::ZeroVector);
+
 
 };

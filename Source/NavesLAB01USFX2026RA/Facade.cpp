@@ -2,6 +2,10 @@
 
 
 #include "Facade.h"
+#include "FabricaMAcuatico.h"
+#include "EnemigoAcuatico.h"
+#include "FabricaMTerrestre.h"
+#include "EnemigoTerrestre.h"
 
 // Sets default values
 AFacade::AFacade()
@@ -15,6 +19,7 @@ AFacade::AFacade()
 void AFacade::BeginPlay()
 {
 	Super::BeginPlay();
+	UWorld* World = GetWorld();
 	
 }
 
@@ -25,3 +30,22 @@ void AFacade::Tick(float DeltaTime)
 
 }
 
+void AFacade::CrearEnemigoAcuatico(int cantidad, FVector posicion)
+{
+	AFabricaMEnemigo* fabrica = GetWorld()->SpawnActor<AFabricaMAcuatico>(AFabricaMAcuatico::StaticClass());
+	posicion.Z = 214.f;
+	for (int i = 0; i < cantidad; i++) {
+		AEnemigo* enemigo = fabrica->FabricarEnemigo(posicion + FVector(100, 0, 0) * i);
+		Enemigos.Add(enemigo);
+	}
+}
+
+void AFacade::CrearEnemigoTerrestre(int cantidad, FVector posicion)
+{
+	AFabricaMEnemigo* fabrica = GetWorld()->SpawnActor<AFabricaMTerrestre>(AFabricaMTerrestre::StaticClass());
+	posicion.Z = 214.f;
+	for (int i = 0; i < cantidad; i++) {
+		AEnemigo* enemigo = fabrica->FabricarEnemigo(posicion + FVector(160, 0, 0) * i);
+		Enemigos.Add(enemigo);
+	}
+}

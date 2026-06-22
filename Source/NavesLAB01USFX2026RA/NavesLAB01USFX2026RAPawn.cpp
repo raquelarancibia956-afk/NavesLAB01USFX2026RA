@@ -52,6 +52,7 @@ ANavesLAB01USFX2026RAPawn::ANavesLAB01USFX2026RAPawn()
 	bCanFire = true;
 
 	Danio = 20;
+	Vida = 100;
 
 }
 
@@ -142,3 +143,11 @@ void ANavesLAB01USFX2026RAPawn::ShotTimerExpired()
 	bCanFire = true;
 }
 
+void ANavesLAB01USFX2026RAPawn::RecibirDanio(int cantidad)
+{
+	Vida -= cantidad;
+	if (Vida <= 0) {
+		const FName CurrentLevelName = FName(GetWorld()->GetName());
+		UGameplayStatics::OpenLevel(this, CurrentLevelName);
+	}
+}

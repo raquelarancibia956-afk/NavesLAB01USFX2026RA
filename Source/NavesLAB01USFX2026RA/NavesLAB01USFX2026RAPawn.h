@@ -78,6 +78,9 @@ public:
 
 public:
 	int Danio;
+	int Vida;
+
+	void RecibirDanio(int cantidad);
 
 
 };
