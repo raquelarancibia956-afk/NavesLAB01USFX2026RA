@@ -8,7 +8,6 @@
 
 class AEnemigo;
 class AAplastador;
-class AFacade;
 
 UCLASS(MinimalAPI)
 class ANavesLAB01USFX2026RAGameMode : public AGameModeBase
@@ -19,8 +18,8 @@ public:
 	ANavesLAB01USFX2026RAGameMode();
 	virtual void BeginPlay() override;
 
-	AFacade* Facade;
-
+	AEnemigo* Enemigo1;
+	AEnemigo* Enemigo2;
 	AAplastador* Aplastador1;
 	
 
