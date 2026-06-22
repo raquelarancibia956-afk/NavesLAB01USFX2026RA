@@ -4,10 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Suscriptor.h"
 #include "Enemigo.generated.h"
 
 UCLASS()
-class NAVESLAB01USFX2026RA_API AEnemigo : public AActor
+class NAVESLAB01USFX2026RA_API AEnemigo : public AActor, public ISuscriptor
 {
 	GENERATED_BODY()
 	
@@ -39,5 +40,5 @@ public:
 	virtual void Mover(float DeltaTime);
 	virtual void CambiarPuedeDisparar();
 	virtual void RecibirDanio(int danio);
-
+	virtual void AccionEspecial() override;
 };

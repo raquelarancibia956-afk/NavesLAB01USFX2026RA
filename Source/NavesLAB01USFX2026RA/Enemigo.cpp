@@ -2,6 +2,7 @@
 
 
 #include "Enemigo.h"
+#include "Suscriptor.h"	
 #include "NavesLAB01USFX2026RAProjectile.h"
 
 // Sets default values
@@ -84,5 +85,10 @@ void AEnemigo::RecibirDanio(int danio)
 	{
 		Destroy();
 	}
+}
+
+void AEnemigo::AccionEspecial()
+{
+	Destroy();
 }
 

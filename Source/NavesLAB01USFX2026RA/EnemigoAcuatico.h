@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Enemigo.h"
+#include "Suscriptor.h"
 #include "EnemigoAcuatico.generated.h"
 
 /**
