@@ -9,11 +9,12 @@ AEnemigoAereo::AEnemigoAereo()
 	Jugador = nullptr;
 	SetMalla(TEXT("StaticMesh'/Game/StarterContent/Shapes/Shape_Pipe.Shape_Pipe'"));
 	PuedeDisparar = true;
-	TiempoEntreDisparos = 1.0f;
+	TiempoEntreDisparos = 3.0f;
 }
 
 void AEnemigoAereo::BeginPlay()
 {
+	Super::BeginPlay();
 	ANavesLAB01USFX2026RAPawn* JugadorTemp = Cast<ANavesLAB01USFX2026RAPawn>(GetWorld()->GetFirstPlayerController()->GetPawn());
 	if (JugadorTemp != nullptr)
 	{
@@ -24,6 +25,7 @@ void AEnemigoAereo::BeginPlay()
 void AEnemigoAereo::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Blue, "Colision Detectada");
 	if (Jugador != nullptr)
 	{
 		FVector DireccionJugador = Jugador->GetActorLocation() - GetActorLocation();
@@ -31,6 +33,7 @@ void AEnemigoAereo::Tick(float DeltaTime)
 		DireccionJugador.Normalize();
 		Direccion = DireccionJugador;
 		DireccionDisparo = DireccionJugador;
+		GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Blue, "Movimiento");
 	}
 	Mover(DeltaTime);
 	Disparar();

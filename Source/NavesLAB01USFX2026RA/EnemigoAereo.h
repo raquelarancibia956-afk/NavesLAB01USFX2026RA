@@ -15,6 +15,7 @@ class NAVESLAB01USFX2026RA_API AEnemigoAereo : public AEnemigo
 public:
 
 	ANavesLAB01USFX2026RAPawn* Jugador;
+	AEnemigoAereo();
 protected:
 	virtual void BeginPlay() override;
 
