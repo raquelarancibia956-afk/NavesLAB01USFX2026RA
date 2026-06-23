@@ -4,19 +4,21 @@
 
 #include "CoreMinimal.h"
 #include "Enemigo.h"
-#include "EnemigoTerrestre.generated.h"
+#include "EnemigoAereo.generated.h"
 
 class ANavesLAB01USFX2026RAPawn;
 
 UCLASS()
-class NAVESLAB01USFX2026RA_API AEnemigoTerrestre : public AEnemigo
+class NAVESLAB01USFX2026RA_API AEnemigoAereo : public AEnemigo
 {
 	GENERATED_BODY()
 public:
+
 	ANavesLAB01USFX2026RAPawn* Jugador;
-	AEnemigoTerrestre();
 protected:
 	virtual void BeginPlay() override;
+
 public:
+	AEnemigoAereo();
 	virtual void Tick(float DeltaTime) override;
 };

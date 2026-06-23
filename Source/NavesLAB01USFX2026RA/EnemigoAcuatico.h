@@ -7,9 +7,7 @@
 #include "Suscriptor.h"
 #include "EnemigoAcuatico.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class NAVESLAB01USFX2026RA_API AEnemigoAcuatico : public AEnemigo
 {
