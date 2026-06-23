@@ -7,6 +7,7 @@
 #include "Facade.generated.h"
 
 class AEnemigo;
+class ABomba;
 
 UCLASS()
 class NAVESLAB01USFX2026RA_API AFacade : public AActor
@@ -15,7 +16,7 @@ class NAVESLAB01USFX2026RA_API AFacade : public AActor
 	
 public:
 	TArray<AEnemigo*> Enemigos;
-	AEnemigo* Cerebro;
+	ABomba* Bomba;
 
 protected:
 	virtual void BeginPlay() override;
@@ -25,6 +26,5 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	virtual void CrearEnemigoAcuatico(int cantidad, FVector posicion = FVector::ZeroVector);
 	virtual void CrearEnemigoTerrestre(int cantidad, FVector posicion = FVector::ZeroVector);
-	virtual void DestruirEnemigos();
 
 };

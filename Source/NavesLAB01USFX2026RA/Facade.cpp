@@ -6,6 +6,8 @@
 #include "EnemigoAcuatico.h"
 #include "FabricaMTerrestre.h"
 #include "EnemigoTerrestre.h"
+#include "Bomba.h"
+#include "Notificador.h"
 
 // Sets default values
 AFacade::AFacade()
@@ -20,7 +22,7 @@ void AFacade::BeginPlay()
 {
 	Super::BeginPlay();
 	UWorld* World = GetWorld();
-	Cerebro = World->SpawnActor<AEnemigoAcuatico>(FVector(-500, -500, 214), FRotator::ZeroRotator);
+	Bomba = World->SpawnActor<ABomba>(FVector(-500, -700, 214), FRotator::ZeroRotator);
 	
 }
 
@@ -28,10 +30,7 @@ void AFacade::BeginPlay()
 void AFacade::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if (!IsValid(Cerebro)) {
-		DestruirEnemigos();
-	}
-
+	
 }
 
 void AFacade::CrearEnemigoAcuatico(int cantidad, FVector posicion)
@@ -40,6 +39,7 @@ void AFacade::CrearEnemigoAcuatico(int cantidad, FVector posicion)
 	posicion.Z = 214.f;
 	for (int i = 0; i < cantidad; i++) {
 		AEnemigo* enemigo = fabrica->FabricarEnemigo(posicion + FVector(100, 0, 0) * i);
+		Bomba->Emisor->Inscribir(enemigo);
 		Enemigos.Add(enemigo);
 	}
 }
@@ -50,14 +50,8 @@ void AFacade::CrearEnemigoTerrestre(int cantidad, FVector posicion)
 	posicion.Z = 214.f;
 	for (int i = 0; i < cantidad; i++) {
 		AEnemigo* enemigo = fabrica->FabricarEnemigo(posicion + FVector(160, 0, 0) * i);
+		Bomba->Emisor->Inscribir(enemigo);
 		Enemigos.Add(enemigo);
 	}
 
-}
-
-void AFacade::DestruirEnemigos()
-{
-	for (AEnemigo* enemigo : Enemigos) {
-		enemigo->AccionEspecial();
-	}
 }

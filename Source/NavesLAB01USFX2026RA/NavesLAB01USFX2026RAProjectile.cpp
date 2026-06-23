@@ -7,6 +7,7 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "NavesLAB01USFX2026RAPawn.h"
 #include "Enemigo.h"
+#include "Bomba.h"
 #include "Engine/StaticMesh.h"
 
 ANavesLAB01USFX2026RAProjectile::ANavesLAB01USFX2026RAProjectile() 
@@ -59,8 +60,10 @@ void ANavesLAB01USFX2026RAProjectile::OnHit(UPrimitiveComponent* HitComp, AActor
 	{
 		jugador->RecibirDanio(Danio);
 	}
-
-
+	ABomba* bomba = Cast<ABomba>(OtherActor);
+	if (bomba != nullptr) {
+		bomba->Resistencia -= 20;
+	}
 
 	Destroy();
 }
