@@ -59,8 +59,10 @@ void AFacade::CrearEnemigoTerrestre(int cantidad, FVector posicion)
 
 void AFacade::CrearDuo(FVector posicion)
 {
-	AEnemigo* enemeigoFuerte = FabricaAbstracta->CrearEnemigoFuerte(posicion);
-	AEnemigo* enemigoDebil = FabricaAbstracta->CrearEnemigoDebil(posicion);
+	AEnemigo* enemigoFuerte = FabricaAbstracta->CrearEnemigoFuerte(posicion);
+	AEnemigo* enemigoDebil = FabricaAbstracta->CrearEnemigoDebil(posicion + FVector(150,150,0));
+	Bomba->Emisor->Inscribir(enemigoFuerte);
+	Bomba->Emisor->Inscribir(enemigoDebil);
 	Enemigos.Add(enemigoFuerte);
 	Enemigos.Add(enemigoDebil);
 }
