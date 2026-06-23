@@ -13,5 +13,11 @@ UCLASS()
 class NAVESLAB01USFX2026RA_API AETBlindado : public AEnemigoTerrestre
 {
 	GENERATED_BODY()
+public:
+	AETBlindado();
+protected:
+	virtual void BeginPlay() override;
+public:
+	virtual void Tick(float DeltaTime) override;
 	
 };

@@ -13,5 +13,11 @@ UCLASS()
 class NAVESLAB01USFX2026RA_API AEALancha : public AEnemigoAcuatico
 {
 	GENERATED_BODY()
-	
+public:
+	AEALancha();
+protected:
+	virtual void BeginPlay() override;
+public:
+	virtual void Tick(float DeltaTime) override;
+
 };

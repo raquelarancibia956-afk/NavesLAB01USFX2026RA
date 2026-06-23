@@ -6,12 +6,15 @@
 #include "EnemigoAcuatico.h"
 #include "EABarco.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class NAVESLAB01USFX2026RA_API AEABarco : public AEnemigoAcuatico
 {
 	GENERATED_BODY()
-	
+public:
+	AEABarco();
+protected:
+	virtual void BeginPlay() override;
+public:
+	virtual void Tick(float DeltaTime) override;
+
 };

@@ -20,6 +20,5 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
-	AEnemigoAereo();
 	virtual void Tick(float DeltaTime) override;
 };

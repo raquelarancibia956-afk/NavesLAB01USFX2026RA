@@ -13,5 +13,11 @@ UCLASS()
 class NAVESLAB01USFX2026RA_API AEAAvion : public AEnemigoAereo
 {
 	GENERATED_BODY()
-	
+public:
+	AEAAvion();
+protected:
+	virtual void BeginPlay() override;
+public:
+	virtual void Tick(float DeltaTime) override;
+
 };

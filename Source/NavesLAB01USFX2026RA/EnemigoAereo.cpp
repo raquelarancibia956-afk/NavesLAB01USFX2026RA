@@ -25,7 +25,6 @@ void AEnemigoAereo::BeginPlay()
 void AEnemigoAereo::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Blue, "Colision Detectada");
 	if (Jugador != nullptr)
 	{
 		FVector DireccionJugador = Jugador->GetActorLocation() - GetActorLocation();
@@ -33,7 +32,6 @@ void AEnemigoAereo::Tick(float DeltaTime)
 		DireccionJugador.Normalize();
 		Direccion = DireccionJugador;
 		DireccionDisparo = DireccionJugador;
-		GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Blue, "Movimiento");
 	}
 	Mover(DeltaTime);
 	Disparar();
