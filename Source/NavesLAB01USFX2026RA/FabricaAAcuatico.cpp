@@ -5,12 +5,12 @@
 #include "EABarco.h"
 #include "EALancha.h"
 
-void AFabricaAAcuatico::CrearEnemigoFuerte(FVector posicion)
+AEnemigo* AFabricaAAcuatico::CrearEnemigoFuerte(FVector posicion)
 {
     return GetWorld()->SpawnActor<AEABarco>(posicion, FRotator::ZeroRotator);
 }
 
-void AFabricaAAcuatico::CrearEnemigoDebil(FVector posicion)
+AEnemigo* AFabricaAAcuatico::CrearEnemigoDebil(FVector posicion)
 {
     return GetWorld()->SpawnActor<AEALancha>(posicion, FRotator::ZeroRotator);
 }

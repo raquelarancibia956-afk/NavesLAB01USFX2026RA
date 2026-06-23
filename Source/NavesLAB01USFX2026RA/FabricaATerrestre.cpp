@@ -5,12 +5,12 @@
 #include "ETBlindado.h"
 #include "ETTancque.h"
 
-void AFabricaATerrestre::CrearEnemigoFuerte(FVector posicion)
+AEnemigo* AFabricaATerrestre::CrearEnemigoFuerte(FVector posicion)
 {
     return GetWorld()->SpawnActor<AETBlindado>(posicion, FRotator::ZeroRotator);
 }
 
-void AFabricaATerrestre::CrearEnemigoDebil(FVector posicion)
+AEnemigo* AFabricaATerrestre::CrearEnemigoDebil(FVector posicion)
 {
     return GetWorld()->SpawnActor<AETTancque>(posicion, FRotator::ZeroRotator);
 }
