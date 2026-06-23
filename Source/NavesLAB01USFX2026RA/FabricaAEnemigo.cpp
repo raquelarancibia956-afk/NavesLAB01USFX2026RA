@@ -2,6 +2,7 @@
 
 
 #include "FabricaAEnemigo.h"
+#include "Enemigo.h"
 
 // Sets default values
 AFabricaAEnemigo::AFabricaAEnemigo()
@@ -11,17 +12,13 @@ AFabricaAEnemigo::AFabricaAEnemigo()
 
 }
 
-// Called when the game starts or when spawned
-void AFabricaAEnemigo::BeginPlay()
+
+AEnemigo* AFabricaAEnemigo::CrearEnemigoFuerte(FVector posicion)
 {
-	Super::BeginPlay();
-	
+	return nullptr;	
 }
 
-// Called every frame
-void AFabricaAEnemigo::Tick(float DeltaTime)
+AEnemigo* AFabricaAEnemigo::CrearEnemigoDebil(FVector posicion)
 {
-	Super::Tick(DeltaTime);
-
+	return nullptr;	
 }
-

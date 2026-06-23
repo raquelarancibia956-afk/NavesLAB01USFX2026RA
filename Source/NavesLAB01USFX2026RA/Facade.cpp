@@ -6,6 +6,7 @@
 #include "EnemigoAcuatico.h"
 #include "FabricaMTerrestre.h"
 #include "EnemigoTerrestre.h"
+#include "FabricaAEnemigo.h"
 #include "Bomba.h"
 #include "Notificador.h"
 
@@ -54,4 +55,17 @@ void AFacade::CrearEnemigoTerrestre(int cantidad, FVector posicion)
 		Enemigos.Add(enemigo);
 	}
 
+}
+
+void AFacade::CrearDuo(FVector posicion)
+{
+	AEnemigo* enemeigoFuerte = FabricaAbstracta->CrearEnemigoFuerte(posicion);
+	AEnemigo* enemigoDebil = FabricaAbstracta->CrearEnemigoDebil(posicion);
+	Enemigos.Add(enemigoFuerte);
+	Enemigos.Add(enemigoDebil);
+}
+
+void AFacade::SetFabricaAbstracta(AFabricaAEnemigo* fabrica)
+{
+	FabricaAbstracta = fabrica;
 }

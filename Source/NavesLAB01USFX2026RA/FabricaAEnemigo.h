@@ -6,21 +6,17 @@
 #include "GameFramework/Actor.h"
 #include "FabricaAEnemigo.generated.h"
 
+class AEnemigo;
+
 UCLASS()
 class NAVESLAB01USFX2026RA_API AFabricaAEnemigo : public AActor
 {
 	GENERATED_BODY()
 	
+
 public:	
-	// Sets default values for this actor's properties
 	AFabricaAEnemigo();
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	virtual AEnemigo* CrearEnemigoFuerte(FVector posicion);
+	virtual AEnemigo* CrearEnemigoDebil(FVector posicion);
 
 };

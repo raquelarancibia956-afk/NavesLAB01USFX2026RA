@@ -4,11 +4,15 @@
 #include "FabricaMAcuatico.h"
 #include "FabricaMEnemigo.h"
 #include "FabricaMTerrestre.h"
-#include "Director.h"
 #include "FabricaMPlataforma.h"
+#include "Director.h"
 #include "FabricaMMuro.h"
 #include "Aplastador.h"
 #include "Facade.h"
+#include "FabricaAEnemigo.h"
+#include "FabricaAAcuatico.h"
+#include "FabricaAAereo.h"
+#include "FabricaATerrestre.h"
 #include "NavesLAB01USFX2026RAPawn.h"
 
 ANavesLAB01USFX2026RAGameMode::ANavesLAB01USFX2026RAGameMode()
@@ -22,13 +26,19 @@ void ANavesLAB01USFX2026RAGameMode::BeginPlay()
 	UWorld* World = GetWorld();
 	if (!World) return;
 
+	// Factory method
 	Facade = World->SpawnActor<AFacade>(AFacade::StaticClass());
 	Facade->CrearEnemigoAcuatico(5);
 	Facade->CrearEnemigoTerrestre(4, FVector(-200, 600, 0));
 
+	// Abstract Factory
+	AFabricaAEnemigo* fabrica = World->SpawnActor<AFabricaATerrestre>(AFabricaATerrestre::StaticClass());
+	Facade->SetFabricaAbstracta(fabrica);
+	Facade->CrearDuo(FVector(400, -500, 214));
 
+
+	// Builder
 	Aplastador1 = World->SpawnActor<AAplastador>(FVector::ZeroVector, FRotator::ZeroRotator);
-
 
 	ADirector* director = World->SpawnActor<ADirector>(ADirector::StaticClass());
 	AFabricaMPlataforma* builderPlataforma = World->SpawnActor<AFabricaMPlataforma>(AFabricaMPlataforma::StaticClass());

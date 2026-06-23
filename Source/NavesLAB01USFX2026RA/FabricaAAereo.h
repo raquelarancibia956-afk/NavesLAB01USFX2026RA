@@ -14,4 +14,9 @@ class NAVESLAB01USFX2026RA_API AFabricaAAereo : public AFabricaAEnemigo
 {
 	GENERATED_BODY()
 	
+public:
+	AFabricaAAereo();
+	virtual AEnemigo* CrearEnemigoFuerte(FVector posicion) override;
+	virtual AEnemigo* CrearEnemigoDebil(FVector posicion) override;
+	
 };
