@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "NavesLAB01USFX2026RAPawn.generated.h"
 
+class IEfecto;
 UCLASS(Blueprintable)
 class ANavesLAB01USFX2026RAPawn : public APawn
 {
@@ -82,6 +83,7 @@ public:
 
 	void RecibirDanio(int cantidad);
 
-
+	IEfecto* Estrategia;
+	virtual void SetEstrategia(IEfecto* estrategia);
 };
 

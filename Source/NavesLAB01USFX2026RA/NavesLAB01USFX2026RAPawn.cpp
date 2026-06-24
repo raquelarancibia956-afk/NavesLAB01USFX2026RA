@@ -10,6 +10,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Engine/CollisionProfile.h"
 #include "Engine/StaticMesh.h"
+#include "Efecto.h"
 #include "Kismet/GameplayStatics.h"
 #include "Sound/SoundBase.h"
 
@@ -26,7 +27,9 @@ ANavesLAB01USFX2026RAPawn::ANavesLAB01USFX2026RAPawn()
 	RootComponent = ShipMeshComponent;
 	ShipMeshComponent->SetCollisionProfileName(UCollisionProfile::Pawn_ProfileName);
 	ShipMeshComponent->SetStaticMesh(ShipMesh.Object);
-	
+
+	ShipMeshComponent->SetCollisionObjectType(ECC_EngineTraceChannel2);
+	ShipMeshComponent->SetCollisionResponseToChannel(ECC_EngineTraceChannel3,ECR_Overlap);
 	// Cache our sound effect
 	static ConstructorHelpers::FObjectFinder<USoundBase> FireAudio(TEXT("/Game/TwinStick/Audio/TwinStickFire.TwinStickFire"));
 	FireSound = FireAudio.Object;
@@ -150,4 +153,10 @@ void ANavesLAB01USFX2026RAPawn::RecibirDanio(int cantidad)
 		const FName CurrentLevelName = FName(GetWorld()->GetName());
 		UGameplayStatics::OpenLevel(this, CurrentLevelName);
 	}
+}
+
+void ANavesLAB01USFX2026RAPawn::SetEstrategia(IEfecto* estrategia)
+{
+	Estrategia = estrategia;
+	Estrategia->AplicarEfecto(this);
 }
