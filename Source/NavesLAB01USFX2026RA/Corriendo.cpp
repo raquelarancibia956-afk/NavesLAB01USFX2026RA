@@ -2,7 +2,6 @@
 
 
 #include "Corriendo.h"
-#include "Disparando.h"
 #include "Moviendose.h"
 #include "Quieto.h"
 #include "NavesLAB01USFX2026RAPawn.h"
@@ -31,7 +30,7 @@ void ACorriendo::Moverse(float forwardValue, float rightValue, float bCorrer, fl
 	
 	// Clamp max size so that (X=1, Y=1) doesn't cause faster movement in diagonal directions
 	const FVector MoveDirection = FVector(forwardValue, rightValue, 0.f).GetClampedToMaxSize(1.0f);
-	float multiplicador = 2;
+	float multiplicador = 3;
 	// Calculate  movement
 	const FVector Movement = MoveDirection * Jugador->MoveSpeed * multiplicador * DeltaTime;
 
@@ -40,13 +39,13 @@ void ACorriendo::Moverse(float forwardValue, float rightValue, float bCorrer, fl
 	{
 		const FRotator NewRotation = Movement.Rotation();
 		FHitResult Hit(1.f);
-		RootComponent->MoveComponent(Movement, NewRotation, true, &Hit);
+		Jugador->GetRootComponent()->MoveComponent(Movement, NewRotation, true, &Hit);
 
 		if (Hit.IsValidBlockingHit())
 		{
 			const FVector Normal2D = Hit.Normal.GetSafeNormal2D();
 			const FVector Deflection = FVector::VectorPlaneProject(Movement, Normal2D) * (1.f - Hit.Time);
-			RootComponent->MoveComponent(Deflection, NewRotation, true);
+			Jugador->GetRootComponent()->MoveComponent(Deflection, NewRotation, true);
 		}
 	}
 }
