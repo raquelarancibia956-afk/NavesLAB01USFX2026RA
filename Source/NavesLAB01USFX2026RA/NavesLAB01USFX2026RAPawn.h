@@ -7,6 +7,8 @@
 #include "NavesLAB01USFX2026RAPawn.generated.h"
 
 class IEfecto;
+class AEstado;
+
 UCLASS(Blueprintable)
 class ANavesLAB01USFX2026RAPawn : public APawn
 {
@@ -59,8 +61,12 @@ public:
 	static const FName MoveRightBinding;
 	static const FName FireForwardBinding;
 	static const FName FireRightBinding;
+	static const FName RunBinding;
 
-private:
+protected:
+	virtual void BeginPlay() override;
+
+public:
 
 	/* Flag to control firing  */
 	uint32 bCanFire : 1;
@@ -80,10 +86,13 @@ public:
 public:
 	int Danio;
 	int Vida;
+	UPROPERTY()
+	AEstado* Estado;
 
 	void RecibirDanio(int cantidad);
 
 	IEfecto* Estrategia;
 	virtual void SetEstrategia(IEfecto* estrategia);
+	virtual void CambiarEstado(AEstado* nuevoEstado);
 };
 

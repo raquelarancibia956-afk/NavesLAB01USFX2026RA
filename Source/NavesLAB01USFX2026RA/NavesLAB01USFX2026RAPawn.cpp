@@ -10,6 +10,8 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Engine/CollisionProfile.h"
 #include "Engine/StaticMesh.h"
+#include "Estado.h"
+#include "Quieto.h"
 #include "Efecto.h"
 #include "Kismet/GameplayStatics.h"
 #include "Sound/SoundBase.h"
@@ -18,6 +20,7 @@ const FName ANavesLAB01USFX2026RAPawn::MoveForwardBinding("MoveForward");
 const FName ANavesLAB01USFX2026RAPawn::MoveRightBinding("MoveRight");
 const FName ANavesLAB01USFX2026RAPawn::FireForwardBinding("FireForward");
 const FName ANavesLAB01USFX2026RAPawn::FireRightBinding("FireRight");
+const FName ANavesLAB01USFX2026RAPawn::RunBinding("Run");
 
 ANavesLAB01USFX2026RAPawn::ANavesLAB01USFX2026RAPawn()
 {	
@@ -68,19 +71,26 @@ void ANavesLAB01USFX2026RAPawn::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindAxis(MoveRightBinding);
 	PlayerInputComponent->BindAxis(FireForwardBinding);
 	PlayerInputComponent->BindAxis(FireRightBinding);
+	PlayerInputComponent->BindAxis(RunBinding);
+
 }
 
 void ANavesLAB01USFX2026RAPawn::Tick(float DeltaSeconds)
 {
+	Super::Tick(DeltaSeconds);
 	// Find movement direction
 	const float ForwardValue = GetInputAxisValue(MoveForwardBinding);
 	const float RightValue = GetInputAxisValue(MoveRightBinding);
+	float bCorrer = GetInputAxisValue(RunBinding); // TODO: cambiar a 1
 
+
+	Estado->Moverse(ForwardValue, RightValue, bCorrer, DeltaSeconds);
+	/*
 	// Clamp max size so that (X=1, Y=1) doesn't cause faster movement in diagonal directions
 	const FVector MoveDirection = FVector(ForwardValue, RightValue, 0.f).GetClampedToMaxSize(1.0f);
 
 	// Calculate  movement
-	const FVector Movement = MoveDirection * MoveSpeed * DeltaSeconds;
+	const FVector Movement = MoveDirection * MoveSpeed * multiplicadorVelocidad * DeltaSeconds;
 
 	// If non-zero size, move this actor
 	if (Movement.SizeSquared() > 0.0f)
@@ -96,14 +106,16 @@ void ANavesLAB01USFX2026RAPawn::Tick(float DeltaSeconds)
 			RootComponent->MoveComponent(Deflection, NewRotation, true);
 		}
 	}
+	*/
 	
 	// Create fire direction vector
 	const float FireForwardValue = GetInputAxisValue(FireForwardBinding);
 	const float FireRightValue = GetInputAxisValue(FireRightBinding);
 	const FVector FireDirection = FVector(FireForwardValue, FireRightValue, 0.f);
 
+	Estado->Disparar(FireForwardValue, FireRightValue);
 	// Try and fire a shot
-	FireShot(FireDirection);
+	//FireShot(FireDirection);
 }
 
 void ANavesLAB01USFX2026RAPawn::FireShot(FVector FireDirection)
@@ -146,6 +158,13 @@ void ANavesLAB01USFX2026RAPawn::ShotTimerExpired()
 	bCanFire = true;
 }
 
+void ANavesLAB01USFX2026RAPawn::BeginPlay()
+{
+	Super::BeginPlay();
+	Estado = GetWorld()->SpawnActor<AQuieto>(AQuieto::StaticClass());
+	Estado->Jugador = this;
+}
+
 void ANavesLAB01USFX2026RAPawn::RecibirDanio(int cantidad)
 {
 	Vida -= cantidad;
@@ -159,4 +178,9 @@ void ANavesLAB01USFX2026RAPawn::SetEstrategia(IEfecto* estrategia)
 {
 	Estrategia = estrategia;
 	Estrategia->AplicarEfecto(this);
+}
+
+void ANavesLAB01USFX2026RAPawn::CambiarEstado(AEstado* nuevoEstado)
+{
+	Estado = nuevoEstado;
 }
