@@ -8,6 +8,7 @@
 
 class IEfecto;
 class AEstado;
+class IDecorador;
 
 UCLASS(Blueprintable)
 class ANavesLAB01USFX2026RAPawn : public APawn
@@ -88,6 +89,8 @@ public:
 	int Vida;
 	UPROPERTY()
 	AEstado* Estado;
+	
+	TArray<IDecorador*> Proyectiles;
 
 	void RecibirDanio(int cantidad);
 

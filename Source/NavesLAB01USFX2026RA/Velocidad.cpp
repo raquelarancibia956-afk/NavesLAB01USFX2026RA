@@ -40,7 +40,9 @@ void AVelocidad::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* Oth
 	ANavesLAB01USFX2026RAPawn* jugador = Cast<ANavesLAB01USFX2026RAPawn>(OtherActor);
 	if (jugador) {
 		jugador->SetEstrategia(this);
-		Destroy();
+		
+		SetActorHiddenInGame(true);
+		SetActorEnableCollision(false);
 	}
 }
 
@@ -54,5 +56,6 @@ void AVelocidad::AplicarEfecto(ANavesLAB01USFX2026RAPawn* objetivo)
 void AVelocidad::RestablecerEfecto()
 {
 	Jugador->MoveSpeed = Guardado;
+	Destroy();
 
 }

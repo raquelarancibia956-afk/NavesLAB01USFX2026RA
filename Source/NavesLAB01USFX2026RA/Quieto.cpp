@@ -28,6 +28,7 @@ void AQuieto::Disparar(float forwardValue, float rightValue)
 				ANavesLAB01USFX2026RAProjectile* bala;
 				bala = World->SpawnActor<ANavesLAB01USFX2026RAProjectile>(SpawnLocation, FireRotation);
 				bala->SetDanio(Jugador->Danio);
+				Jugador->Proyectiles.Add(bala);
 			}
 
 			Jugador->bCanFire = false;

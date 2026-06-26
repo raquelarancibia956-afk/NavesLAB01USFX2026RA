@@ -4,13 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Decorador.h"
 #include "NavesLAB01USFX2026RAProjectile.generated.h"
 
 class UProjectileMovementComponent;
 class UStaticMeshComponent;
 
 UCLASS(config=Game)
-class ANavesLAB01USFX2026RAProjectile : public AActor
+class ANavesLAB01USFX2026RAProjectile : public AActor, public IDecorador
 {
 	GENERATED_BODY()
 

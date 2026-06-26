@@ -42,7 +42,8 @@ void ALento::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherAc
 	ANavesLAB01USFX2026RAPawn* jugador = Cast<ANavesLAB01USFX2026RAPawn>(OtherActor);
 	if (jugador) {
 		jugador->SetEstrategia(this);
-		Destroy();
+		SetActorHiddenInGame(true);
+		SetActorEnableCollision(false);
 	}
 }
 
@@ -57,5 +58,6 @@ void ALento::AplicarEfecto(ANavesLAB01USFX2026RAPawn* objetivo)
 void ALento::RestablecerEfecto()
 {
 	Jugador->MoveSpeed = Guardado;
+	Destroy();
 }
 
