@@ -17,6 +17,8 @@ AEstructura::AEstructura()
 	{
 		Malla->SetStaticMesh(Mesh.Object);
 	}
+	Malla->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	Malla->SetCollisionResponseToAllChannels(ECR_Ignore);
 }
 
 // Called when the game starts or when spawned

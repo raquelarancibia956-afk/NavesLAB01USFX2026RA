@@ -15,6 +15,10 @@ class NAVESLAB01USFX2026RA_API APlataforma : public AEstructura
 	GENERATED_BODY()
 
 public:
+	FVector Rango;
+	float Velocidad;
+	FVector Direccion;
 	APlataforma();
+	virtual void Tick(float DeltaTime ) override ;
 	
 };
